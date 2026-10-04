@@ -111,9 +111,16 @@ function Index() {
             КВ нон-стоп, активные ЛКВ и рейды столицы. Ищем бойцов, которые играют командой.
           </p>
           <div className="mt-7 flex flex-wrap justify-center gap-2 text-xs text-gold-soft">
+            <span className="rounded-full border border-border bg-panel px-4 py-2 font-num text-sm font-bold tracking-[0.2em] text-primary">
+              {CLAN_TAG}
+            </span>
+            <span className="flex items-center gap-1.5 rounded-full border border-border bg-panel px-3 py-2">
+              <Crown size={12} aria-hidden="true" />
+              ГЛАВА — {LEADER_HANDLE}
+            </span>
             <span className="rounded-full border border-border bg-panel px-3 py-2">ЛКВ — ЗОЛОТАЯ II</span>
             <span className="rounded-full border border-border bg-panel px-3 py-2">СТОЛИЦА — СЕРЕБРЯНАЯ II</span>
-            <span className="rounded-full border border-border bg-panel px-3 py-2">НАБОР ОТ ТХ{MIN_TOWN_HALL}</span>
+            <span className="rounded-full border border-border bg-panel px-3 py-2">НАБОР ОТ ТХ<Num>{String(MIN_TOWN_HALL)}</Num></span>
           </div>
           <div className="mt-8"><JoinButton /></div>
           <a href="#details" aria-label="Перейти к информации о клане" className="mt-16 text-muted-foreground transition-colors hover:text-primary">
@@ -145,7 +152,7 @@ function Index() {
                 return (
                   <div key={String(label)} className="min-h-36 bg-panel p-5">
                     <StatIcon className="mb-5 text-primary" />
-                    <p className="font-bold text-panel-foreground">{String(value)}</p>
+                    <p className="font-bold text-panel-foreground"><Num>{String(value)}</Num></p>
                     <p className="mt-1 text-xs uppercase text-muted-foreground">{String(label)}</p>
                   </div>
                 );
@@ -180,7 +187,7 @@ function Index() {
               <div key={title} className="flex items-center gap-5 border-b border-border py-6">
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground"><Icon /></span>
                 <div className="flex-1"><h3 className="font-bold">{title}</h3><p className="mt-1 text-sm text-muted-foreground">{text}</p></div>
-                <span className="font-display text-2xl text-primary/40">0{index + 1}</span>
+                <span className="font-num text-2xl font-semibold text-primary/40">0<Num>{String(index + 1)}</Num></span>
               </div>
             ))}
           </div>
@@ -194,7 +201,7 @@ function Index() {
               <p className="mt-6 text-xs font-bold uppercase tracking-[0.25em] text-primary">Активный набор</p>
               <h2 className="mt-3 text-3xl font-black sm:text-5xl">Готов вступить?</h2>
               <p className="mt-5 max-w-xl text-muted-foreground">Открытый международный клан с русским чатом. Открой профиль PEARL STAR прямо в Clash of Clans и отправь запрос на вступление.</p>
-              <a href={CLAN_JOIN_URL} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 font-mono text-xl font-bold text-gold-soft hover:text-primary">
+              <a href={CLAN_JOIN_URL} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 font-num text-xl font-bold tracking-[0.2em] text-gold-soft hover:text-primary">
                 {CLAN_TAG}<ChevronRight />
               </a>
               <div className="mt-8"><JoinButton label="Открыть клан" /></div>
@@ -203,7 +210,7 @@ function Index() {
       </section>
 
       <footer className="border-t border-border px-5 py-8 text-center text-xs text-muted-foreground">
-        © 2026 PEARL STAR · Clash of Clans
+        © <Num>2026</Num> PEARL STAR · Clash of Clans
       </footer>
     </main>
   );
