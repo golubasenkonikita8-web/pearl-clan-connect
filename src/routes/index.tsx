@@ -12,6 +12,7 @@ import {
   Languages,
   Medal,
   MessageCircle,
+  Send,
   Shield,
   Sparkles,
   Star,
@@ -22,7 +23,7 @@ import {
 
 import clanInfo from "@/assets/clan-info-current.png.asset.json";
 import { Button } from "@/components/ui/button";
-import { CLAN_JOIN_URL, CLAN_TAG, LEADER_HANDLE, MIN_TOWN_HALL } from "@/lib/clan";
+import { CLAN_JOIN_URL, CLAN_TAG, LEADER_HANDLE, LEADER_TELEGRAM_URL, MIN_TOWN_HALL } from "@/lib/clan";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -114,10 +115,15 @@ function Index() {
             <span className="rounded-full border border-border bg-panel px-4 py-2 font-num text-sm font-bold tracking-[0.2em] text-primary">
               {CLAN_TAG}
             </span>
-            <span className="flex items-center gap-1.5 rounded-full border border-border bg-panel px-3 py-2">
-              <Crown size={12} aria-hidden="true" />
-              ГЛАВА — {LEADER_HANDLE}
-            </span>
+            <a
+              href={LEADER_TELEGRAM_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-1.5 rounded-full border border-border bg-panel px-3 py-2 transition-colors hover:border-primary/50 hover:text-primary"
+            >
+              <Send size={12} aria-hidden="true" />
+              ГЛАВА в Telegram — {LEADER_HANDLE}
+            </a>
             <span className="rounded-full border border-border bg-panel px-3 py-2">ЛКВ — ЗОЛОТАЯ II</span>
             <span className="rounded-full border border-border bg-panel px-3 py-2">СТОЛИЦА — СЕРЕБРЯНАЯ II</span>
             <span className="rounded-full border border-border bg-panel px-3 py-2">НАБОР ОТ ТХ<Num>{String(MIN_TOWN_HALL)}</Num></span>
