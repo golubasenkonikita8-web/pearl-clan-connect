@@ -12,6 +12,7 @@ import {
   Languages,
   Medal,
   MessageCircle,
+  Maximize2,
   Send,
   Shield,
   Sparkles,
@@ -23,6 +24,13 @@ import {
 
 import clanInfo from "@/assets/clan-info-current.png.asset.json";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { CLAN_JOIN_URL, CLAN_TAG, LEADER_HANDLE, LEADER_TELEGRAM_URL, MIN_TOWN_HALL } from "@/lib/clan";
 
 export const Route = createFileRoute("/")({
@@ -142,9 +150,26 @@ function Index() {
             <h2 className="mt-3 text-3xl font-black sm:text-5xl">PEARL STAR в игре</h2>
           </div>
           <div className="grid items-center gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-            <div className="overflow-hidden rounded-lg border border-border bg-card shadow-2xl">
-              <img src={clanInfo.url} alt="Статистика клана PEARL STAR" className="aspect-video w-full object-cover" />
-            </div>
+            <Dialog>
+              <DialogTrigger asChild>
+                <button
+                  type="button"
+                  aria-label="Открыть фото статистики клана в полном размере"
+                  className="group relative block w-full cursor-zoom-in overflow-hidden rounded-lg border border-border bg-card shadow-2xl"
+                >
+                  <img src={clanInfo.url} alt="Статистика клана PEARL STAR" className="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
+                  <span className="absolute inset-0 flex items-center justify-center gap-2 bg-background/70 opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100">
+                    <Maximize2 className="text-primary" size={18} aria-hidden="true" />
+                    <span className="text-xs font-bold uppercase tracking-[0.25em] text-primary">Открыть</span>
+                  </span>
+                </button>
+              </DialogTrigger>
+              <DialogContent className="max-w-5xl border-border bg-panel p-3 sm:p-4">
+                <DialogTitle className="sr-only">Статистика клана PEARL STAR</DialogTitle>
+                <DialogDescription className="sr-only">Фото со статистикой клана PEARL STAR в полном размере.</DialogDescription>
+                <img src={clanInfo.url} alt="Статистика клана PEARL STAR" className="max-h-[80vh] w-full rounded-md object-contain" />
+              </DialogContent>
+            </Dialog>
             <div className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-border bg-border">
               {[
                 [Users, "23 / 50", "участников"],
