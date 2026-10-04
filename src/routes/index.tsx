@@ -20,8 +20,7 @@ import {
   Users,
 } from "lucide-react";
 
-import clanInfo from "@/assets/clan-info.png.asset.json";
-import clanProfileHome from "@/assets/clan-profile-home.png.asset.json";
+import clanInfo from "@/assets/clan-info-current.png.asset.json";
 import { Button } from "@/components/ui/button";
 import { CLAN_JOIN_URL, CLAN_TAG, MIN_TOWN_HALL } from "@/lib/clan";
 
@@ -171,20 +170,17 @@ function Index() {
       </section>
 
       <section className="px-5 py-20">
-        <div className="mx-auto max-w-6xl overflow-hidden rounded-lg border border-border bg-card">
-          <div className="grid lg:grid-cols-2">
-            <img src={clanProfileHome.url} alt="Профиль клана PEARL STAR в Clash of Clans" className="h-full min-h-72 w-full object-cover" />
-            <div className="flex flex-col justify-center p-8 sm:p-12">
+        <div className="mx-auto max-w-4xl rounded-lg border border-border bg-card p-8 sm:p-12">
+            <div className="flex flex-col items-center justify-center text-center">
               <Sparkles className="text-primary" />
               <p className="mt-6 text-xs font-bold uppercase tracking-[0.25em] text-primary">Активный набор</p>
               <h2 className="mt-3 text-3xl font-black sm:text-5xl">Готов вступить?</h2>
-              <p className="mt-5 max-w-md text-muted-foreground">Открой профиль PEARL STAR прямо в Clash of Clans и отправь запрос на вступление.</p>
+              <p className="mt-5 max-w-xl text-muted-foreground">Открытый международный клан с русским чатом. Открой профиль PEARL STAR прямо в Clash of Clans и отправь запрос на вступление.</p>
               <a href={CLAN_JOIN_URL} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 font-mono text-xl font-bold text-gold-soft hover:text-primary">
                 {CLAN_TAG}<ChevronRight />
               </a>
               <div className="mt-8"><JoinButton label="Открыть клан" /></div>
             </div>
-          </div>
         </div>
       </section>
 
