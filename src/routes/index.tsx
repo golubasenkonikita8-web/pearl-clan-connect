@@ -22,7 +22,7 @@ import {
 
 import clanInfo from "@/assets/clan-info-current.png.asset.json";
 import { Button } from "@/components/ui/button";
-import { CLAN_JOIN_URL, CLAN_TAG, MIN_TOWN_HALL } from "@/lib/clan";
+import { CLAN_JOIN_URL, CLAN_TAG, LEADER_HANDLE, MIN_TOWN_HALL } from "@/lib/clan";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -69,6 +69,24 @@ function JoinButton({ label = "Вступить в клан" }: { label?: string
         <ExternalLink aria-hidden="true" />
       </a>
     </Button>
+  );
+}
+
+const DIGIT_SPLIT = /(\d+)/g;
+
+/** Wraps every run of digits in its own `font-num` span so numbers get their own typeface. */
+function Num({ children }: { children: string }) {
+  const parts = children.split(DIGIT_SPLIT);
+  return (
+    <>
+      {parts.map((part, index) =>
+        index % 2 === 1 ? (
+          <span key={index} className="font-num">{part}</span>
+        ) : (
+          part
+        ),
+      )}
+    </>
   );
 }
 
