@@ -4,7 +4,7 @@ import { DemoTag, Reveal } from "./Reveal";
 
 const fmt = (n: number) => n.toLocaleString("ru-RU");
 const day = (d: Date) => d.toLocaleDateString("ru-RU", { day: "2-digit", month: "2-digit", timeZone: "UTC" });
-const MEDALS = ["🥇", "🥈", "🥉"];
+const MEDALS = ["1 место", "2 место", "3 место"];
 const PODIUM = ["from-primary to-gold-soft", "from-muted-foreground to-secondary", "from-chart-1 to-chart-5"];
 
 export function RankedSection() {
@@ -46,7 +46,7 @@ export function RankedSection() {
             <div key={p.name} className={`glass glow-hover relative overflow-hidden rounded-xl p-6 text-center ring-1 ring-primary/40 ${i === 0 ? "sm:order-2 sm:-mt-4" : i === 1 ? "sm:order-1" : "sm:order-3"}`}>
               <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${PODIUM[i]}`} />
               <div className="absolute -top-10 left-1/2 h-24 w-24 -translate-x-1/2 rounded-full bg-primary/20 blur-2xl" />
-              <p className="relative text-4xl">{MEDALS[i]}</p>
+              <span aria-label={MEDALS[i]} className={`relative mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br ${PODIUM[i]} font-num text-2xl font-bold text-primary-foreground shadow-[0_0_28px_var(--glow)]`}>{i + 1}</span>
               <p className="relative mt-3 truncate text-lg font-bold">{p.name}</p>
               <p className="relative mt-2 font-num text-3xl font-bold text-primary">{fmt(p.trophies)}</p>
               <p className="relative text-xs uppercase text-muted-foreground">трофеев за период</p>
