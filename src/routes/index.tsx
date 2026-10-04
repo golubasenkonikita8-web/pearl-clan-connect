@@ -186,7 +186,7 @@ function Index() {
             {expectations.map(({ icon: Icon, title, text }, index) => (
               <div key={title} className="flex items-center gap-5 border-b border-border py-6">
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground"><Icon /></span>
-                <div className="flex-1"><h3 className="font-bold">{title}</h3><p className="mt-1 text-sm text-muted-foreground">{text}</p></div>
+                <div className="flex-1"><h3 className="font-bold"><Num>{title}</Num></h3><p className="mt-1 text-sm text-muted-foreground"><Num>{text}</Num></p></div>
                 <span className="font-num text-2xl font-semibold text-primary/40">0<Num>{String(index + 1)}</Num></span>
               </div>
             ))}
