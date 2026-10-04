@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep public clan facts and the join URL in `src/lib/clan.ts` so the page and rule tests share one source of truth.
