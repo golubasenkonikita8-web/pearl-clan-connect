@@ -31,9 +31,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { RankedSection } from "@/components/clan/RankedSection";
-import { TopNav } from "@/components/clan/TopNav";
-import { ContactsSection, HowToJoinSection, RankingSection, RosterSection, StatsSection, WarsSection, WhySection } from "@/components/clan/Sections";
 import { CLAN_JOIN_URL, CLAN_TAG, LEADER_HANDLE, LEADER_TELEGRAM_URL, MIN_TOWN_HALL } from "@/lib/clan";
 
 export const Route = createFileRoute("/")({
@@ -105,8 +102,7 @@ function Num({ children }: { children: string }) {
 function Index() {
   return (
     <main className="min-h-screen overflow-hidden bg-background text-foreground">
-      <TopNav />
-      <section id="home" className="relative flex min-h-[92vh] items-center justify-center border-b border-border px-5 py-16">
+      <section className="relative flex min-h-[92vh] items-center justify-center border-b border-border px-5 py-16">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--color-accent),transparent_58%)] opacity-50" />
         {["top-[12%] left-[8%]", "top-[22%] right-[10%]", "bottom-[20%] left-[14%]", "bottom-[12%] right-[15%]"].map((position, index) => (
           <Star key={position} className={`absolute ${position} animate-star-pulse text-primary`} size={index % 2 ? 13 : 18} fill="currentColor" />
@@ -228,15 +224,6 @@ function Index() {
           </div>
         </div>
       </section>
-
-      <RosterSection />
-      <StatsSection />
-      <WarsSection />
-      <RankingSection />
-      <RankedSection />
-      <HowToJoinSection />
-      <WhySection />
-      <ContactsSection />
 
       <section className="px-5 py-20">
         <div className="mx-auto max-w-4xl rounded-lg border border-border bg-card p-8 sm:p-12">
