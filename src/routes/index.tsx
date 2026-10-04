@@ -31,6 +31,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { RankedSection } from "@/components/clan/RankedSection";
 import { TopNav } from "@/components/clan/TopNav";
 import { ContactsSection, HowToJoinSection, RankingSection, RosterSection, StatsSection, WarsSection, WhySection } from "@/components/clan/Sections";
 import { CLAN_JOIN_URL, CLAN_TAG, LEADER_HANDLE, LEADER_TELEGRAM_URL, MIN_TOWN_HALL } from "@/lib/clan";
@@ -232,6 +233,7 @@ function Index() {
       <StatsSection />
       <WarsSection />
       <RankingSection />
+      <RankedSection />
       <HowToJoinSection />
       <WhySection />
       <ContactsSection />

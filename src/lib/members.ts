@@ -60,3 +60,31 @@ export const DEMO_WARS = [
 export const DEMO_WAR_STATS = { wins: 4, losses: 1, streak: 2 };
 export const winRate = (wins: number, losses: number) =>
   wins + losses === 0 ? 0 : Math.round((wins / (wins + losses)) * 100);
+
+/** Ranked battles run in 7-day periods; periods are counted from this Monday (UTC). */
+export const RANKED_PERIOD_ANCHOR = Date.UTC(2026, 8, 28);
+const WEEK = 7 * 24 * 60 * 60 * 1000;
+
+export function rankedPeriod(now: number = Date.now()) {
+  const index = Math.floor((now - RANKED_PERIOD_ANCHOR) / WEEK);
+  const start = RANKED_PERIOD_ANCHOR + index * WEEK;
+  return { index, start: new Date(start), end: new Date(start + WEEK - 1) };
+}
+
+/** Demo-only: trophies earned in ranked battles during the current period. Replace with real numbers. */
+export const DEMO_RANKED: { name: string; trophies: number }[] = [
+  { name: "RentoJS", trophies: 1250 },
+  { name: "Raryumim", trophies: 1080 },
+  { name: "KeypBoss", trophies: 950 },
+  { name: "Цветок", trophies: 820 },
+  { name: "Tw1sty", trophies: 760 },
+  { name: "Lama4ka", trophies: 610 },
+  { name: "KraKoVwV", trophies: 540 },
+  { name: "Gorseezh", trophies: 410 },
+];
+
+export function rankedSummary(entries = DEMO_RANKED) {
+  const sorted = [...entries].sort((a, b) => b.trophies - a.trophies);
+  const total = sorted.reduce((s, e) => s + e.trophies, 0);
+  return { sorted, players: sorted.length, total, average: sorted.length ? Math.round(total / sorted.length) : 0 };
+}
