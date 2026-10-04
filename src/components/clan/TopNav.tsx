@@ -7,6 +7,7 @@ const LINKS = [
   ["stats", "Статистика"],
   ["wars", "Войны"],
   ["ranking", "Рейтинг"],
+  ["ranked", "Ранговые"],
   ["join", "Как вступить"],
   ["contacts", "Контакты"],
 ] as const;
