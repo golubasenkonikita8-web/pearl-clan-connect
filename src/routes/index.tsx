@@ -205,11 +205,38 @@ function Index() {
         {["top-[12%] left-[8%]", "top-[22%] right-[10%]", "bottom-[20%] left-[14%]", "bottom-[12%] right-[15%]"].map((position, index) => (
           <Star key={position} className={`absolute ${position} animate-star-pulse text-primary`} size={index % 2 ? 13 : 18} fill="currentColor" />
         ))}
-        <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center text-center">
-          <div className="relative mb-7 flex h-24 w-24 items-center justify-center rounded-full border border-primary/40 bg-primary text-primary-foreground shadow-[0_0_70px_var(--glow)]">
+        <Constellation className="absolute right-6 top-6 hidden w-32 text-primary sm:block" />
+        <Constellation className="absolute bottom-6 left-6 hidden w-24 -scale-x-100 text-primary sm:block" />
+        {[0, 1].map((index) => (
+          <span
+            key={index}
+            aria-hidden="true"
+            className="animate-shooting-star pointer-events-none absolute h-px w-28 bg-gradient-to-l from-primary/90 to-transparent"
+            style={{ top: `${14 + index * 26}%`, right: "-7rem", animationDelay: `${index * 4.5 + 1.2}s` }}
+          />
+        ))}
+        <div className="animate-frame-glow relative z-10 mx-auto flex max-w-4xl flex-col items-center rounded-2xl border border-primary/35 px-6 py-12 text-center sm:px-12">
+          <button
+            type="button"
+            onClick={handleLogoClick}
+            aria-label="Логотип клана PEARL STAR"
+            className="relative mb-7 flex h-24 w-24 cursor-pointer items-center justify-center rounded-full border border-primary/40 bg-primary text-primary-foreground shadow-[0_0_70px_var(--glow)] transition-transform hover:scale-105 active:scale-95"
+          >
             <Star size={46} fill="currentColor" />
             <span className="absolute -right-3 -top-1 rounded-full border border-primary/30 bg-background px-2 py-1 text-[10px] font-bold text-gold-soft">CoC</span>
-          </div>
+            {burstKey > 0 && (
+              <span key={burstKey} className="pointer-events-none absolute inset-0" aria-hidden="true">
+                {BURST_OFFSETS.map(([x, y], index) => (
+                  <Sparkles
+                    key={index}
+                    size={index % 2 ? 12 : 16}
+                    className="animate-star-burst absolute left-1/2 top-1/2 -ml-2 -mt-2 text-gold-soft"
+                    style={{ "--burst-x": x, "--burst-y": y, animationDelay: `${index * 0.05}s` } as React.CSSProperties}
+                  />
+                ))}
+              </span>
+            )}
+          </button>
           <p className="mb-4 text-xs font-bold uppercase tracking-[0.34em] text-primary">Clash of Clans</p>
           <h1 className="font-display text-5xl font-black leading-none sm:text-7xl lg:text-8xl">
             <span className="text-primary">PEARL</span> STAR
