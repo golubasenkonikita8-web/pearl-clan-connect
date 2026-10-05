@@ -125,7 +125,7 @@ function TopNav() {
 
 function Index() {
   return (
-    <main className="min-h-screen overflow-hidden bg-background text-foreground">
+    <main className="min-h-screen bg-background text-foreground">
       <TopNav />
       <section className="relative flex min-h-[92vh] items-center justify-center border-b border-border px-5 py-16">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--color-accent),transparent_58%)] opacity-50" />
