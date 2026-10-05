@@ -177,3 +177,55 @@
 @utility animate-star-pulse {
   animation: star-pulse 4s ease-in-out infinite;
 }
+
+/* Very subtle animated gold gradient drifting across the page background */
+@keyframes gold-drift {
+  0%, 100% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+}
+
+@utility animate-gold-drift {
+  background-size: 220% 220%;
+  animation: gold-drift 26s ease-in-out infinite;
+}
+
+/* Occasional shooting star crossing the screen */
+@keyframes shooting-star {
+  0% { transform: translate3d(0, 0, 0) rotate(-32deg); opacity: 0; }
+  4% { opacity: 1; }
+  16% { transform: translate3d(-62vw, 34vh, 0) rotate(-32deg); opacity: 0; }
+  100% { transform: translate3d(-62vw, 34vh, 0) rotate(-32deg); opacity: 0; }
+}
+
+@utility animate-shooting-star {
+  animation: shooting-star 9s linear infinite;
+}
+
+/* Soft breathing glow for the gold frame around the hero block */
+@keyframes frame-glow {
+  0%, 100% { box-shadow: 0 0 24px oklch(0.72 0.155 86 / 12%), inset 0 0 24px oklch(0.72 0.155 86 / 6%); }
+  50% { box-shadow: 0 0 44px oklch(0.72 0.155 86 / 26%), inset 0 0 34px oklch(0.72 0.155 86 / 10%); }
+}
+
+@utility animate-frame-glow {
+  animation: frame-glow 5s ease-in-out infinite;
+}
+
+/* Easter-egg star burst when the logo is clicked several times */
+@keyframes star-burst {
+  0% { transform: translate(0, 0) scale(0.4) rotate(0deg); opacity: 1; }
+  100% { transform: translate(var(--burst-x), var(--burst-y)) scale(1.15) rotate(160deg); opacity: 0; }
+}
+
+@utility animate-star-burst {
+  animation: star-burst 1.1s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-gold-drift,
+  .animate-shooting-star,
+  .animate-frame-glow,
+  .animate-star-burst {
+    animation: none;
+  }
+}
