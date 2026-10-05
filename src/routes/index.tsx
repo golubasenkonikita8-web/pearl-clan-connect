@@ -111,10 +111,9 @@ function TopNav() {
       <nav aria-label="Разделы страницы" className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-8 gap-y-2 px-5 py-3.5">
         <span
           aria-hidden="true"
-          className="invisible hidden items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] lg:flex"
+          className="invisible hidden rounded-md border border-primary/60 px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] lg:block"
         >
-          <Send size={14} aria-hidden="true" />
-          Telegram главы <span className="normal-case tracking-normal">{LEADER_HANDLE}</span>
+          Telegram
         </span>
         <div className="flex flex-1 flex-wrap items-center justify-center gap-x-8 gap-y-2">
           {NAV_LINKS.map(({ href, label }) => (
@@ -131,13 +130,10 @@ function TopNav() {
           href={LEADER_TELEGRAM_URL}
           target="_blank"
           rel="noreferrer"
-          className="flex shrink-0 items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-primary"
+          title={`Telegram главы — ${LEADER_HANDLE}`}
+          className="shrink-0 rounded-md border border-primary/60 px-4 py-2 text-center text-xs font-bold uppercase tracking-[0.25em] text-panel-foreground transition-colors hover:border-primary hover:bg-primary/10 hover:text-primary"
         >
-          <Send size={14} aria-hidden="true" />
-          <span>
-            Telegram главы{" "}
-            <span className="normal-case tracking-normal text-gold-soft">{LEADER_HANDLE}</span>
-          </span>
+          Telegram
         </a>
       </nav>
     </header>
