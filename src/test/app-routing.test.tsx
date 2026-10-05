@@ -3,7 +3,7 @@ import { createRouter, rootRouteId } from "@tanstack/react-router";
 import { describe, expect, it } from "vitest";
 
 import { routeTree } from "@/routeTree.gen";
-import { CLAN_JOIN_URL, CLAN_TAG, MIN_TOWN_HALL } from "@/lib/clan";
+import { CLAN_JOIN_URL, CLAN_TAG, LEADER_TELEGRAM_URL, MIN_TOWN_HALL } from "@/lib/clan";
 
 // Match routes without running loaders or rendering: loaders may need a server or
 // network the test run lacks, and jsdom never loads the stylesheets React waits on.
@@ -30,5 +30,9 @@ describe("Clan recruitment rules", () => {
     expect(CLAN_JOIN_URL).toBe(
       "https://link.clashofclans.com/ru?action=OpenClanProfile&tag=2CG2U80CP",
     );
+  });
+
+  it("links the leader's Telegram profile", () => {
+    expect(LEADER_TELEGRAM_URL).toBe("https://t.me/Raryumim");
   });
 });
