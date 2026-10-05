@@ -99,9 +99,34 @@ function Num({ children }: { children: string }) {
   );
 }
 
+const NAV_LINKS = [
+  { href: "#clan", label: "КЛАН" },
+  { href: "#offers", label: "В ИГРЕ" },
+  { href: "#join", label: "МЫ НА СВЯЗИ" },
+];
+
+function TopNav() {
+  return (
+    <header className="sticky top-0 z-50 border-b border-border bg-panel backdrop-blur">
+      <nav aria-label="Разделы страницы" className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-8 gap-y-1 px-5 py-3.5">
+        {NAV_LINKS.map(({ href, label }) => (
+          <a
+            key={href}
+            href={href}
+            className="text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground transition-colors hover:text-primary"
+          >
+            {label}
+          </a>
+        ))}
+      </nav>
+    </header>
+  );
+}
+
 function Index() {
   return (
-    <main className="min-h-screen overflow-hidden bg-background text-foreground">
+    <main className="min-h-screen bg-background text-foreground">
+      <TopNav />
       <section className="relative flex min-h-[92vh] items-center justify-center border-b border-border px-5 py-16">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--color-accent),transparent_58%)] opacity-50" />
         {["top-[12%] left-[8%]", "top-[22%] right-[10%]", "bottom-[20%] left-[14%]", "bottom-[12%] right-[15%]"].map((position, index) => (
@@ -137,13 +162,13 @@ function Index() {
             <span className="rounded-full border border-border bg-panel px-3 py-2">НАБОР ОТ ТХ<Num>{String(MIN_TOWN_HALL)}</Num></span>
           </div>
           <div className="mt-8"><JoinButton /></div>
-          <a href="#details" aria-label="Перейти к информации о клане" className="mt-16 text-muted-foreground transition-colors hover:text-primary">
+          <a href="#clan" aria-label="Перейти к информации о клане" className="mt-16 text-muted-foreground transition-colors hover:text-primary">
             <ArrowDown className="animate-bounce" />
           </a>
         </div>
       </section>
 
-      <section id="details" className="border-b border-border px-5 py-20">
+      <section id="clan" className="border-b border-border px-5 py-20">
         <div className="mx-auto max-w-6xl">
           <div className="mb-10 text-center">
             <p className="text-xs font-bold uppercase tracking-[0.26em] text-primary">О клане</p>
@@ -193,7 +218,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="border-b border-border px-5 py-20">
+      <section id="offers" className="border-b border-border px-5 py-20">
         <div className="mx-auto max-w-6xl">
           <p className="text-xs font-bold uppercase tracking-[0.26em] text-primary">От нас</p>
           <h2 className="mt-3 max-w-2xl text-3xl font-black sm:text-5xl">Что мы предлагаем игрокам</h2>
@@ -225,7 +250,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="px-5 py-20">
+      <section id="join" className="px-5 py-20">
         <div className="mx-auto max-w-4xl rounded-lg border border-border bg-card p-8 sm:p-12">
             <div className="flex flex-col items-center justify-center text-center">
               <Sparkles className="text-primary" />
