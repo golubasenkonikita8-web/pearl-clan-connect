@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowDown,
@@ -140,20 +141,102 @@ function TopNav() {
   );
 }
 
-function Index() {
+/** Small constellation decoration for a corner of the interface. */
+function Constellation({ className }: { className: string }) {
+  const stars: Array<[number, number, number]> = [
+    [12, 30, 2.2],
+    [42, 14, 1.6],
+    [70, 34, 2.4],
+    [96, 12, 1.5],
+    [110, 44, 2],
+    [58, 58, 1.4],
+  ];
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <svg aria-hidden="true" viewBox="0 0 120 70" className={className}>
+      <polyline
+        points="12,30 42,14 70,34 96,12 110,44 58,58 12,30"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="0.6"
+        strokeDasharray="2 3"
+        className="text-primary/25"
+      />
+      {stars.map(([cx, cy, r], index) => (
+        <circle key={index} cx={cx} cy={cy} r={r} className="animate-star-pulse fill-primary/60" style={{ animationDelay: `${index * 0.7}s` }} />
+      ))}
+    </svg>
+  );
+}
+
+const BURST_OFFSETS: Array<[string, string]> = [
+  ["-64px", "-52px"],
+  ["58px", "-68px"],
+  ["-78px", "18px"],
+  ["72px", "30px"],
+  ["-30px", "-84px"],
+  ["26px", "66px"],
+  ["-56px", "58px"],
+  ["84px", "-22px"],
+];
+
+function Index() {
+  const [logoClicks, setLogoClicks] = useState(0);
+  const [burstKey, setBurstKey] = useState(0);
+
+  const handleLogoClick = () => {
+    const next = logoClicks + 1;
+    if (next >= 5) {
+      setBurstKey((key) => key + 1);
+      setLogoClicks(0);
+    } else {
+      setLogoClicks(next);
+    }
+  };
+
+  return (
+    <main className="relative min-h-screen bg-background text-foreground">
+      <div
+        aria-hidden="true"
+        className="animate-gold-drift pointer-events-none fixed inset-0 bg-[radial-gradient(ellipse_at_top_left,oklch(0.72_0.155_86/7%),transparent_55%),radial-gradient(ellipse_at_bottom_right,oklch(0.72_0.155_86/5%),transparent_50%)]"
+      />
       <TopNav />
       <section className="relative flex min-h-[92vh] items-center justify-center border-b border-border px-5 py-16">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--color-accent),transparent_58%)] opacity-50" />
         {["top-[12%] left-[8%]", "top-[22%] right-[10%]", "bottom-[20%] left-[14%]", "bottom-[12%] right-[15%]"].map((position, index) => (
           <Star key={position} className={`absolute ${position} animate-star-pulse text-primary`} size={index % 2 ? 13 : 18} fill="currentColor" />
         ))}
-        <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center text-center">
-          <div className="relative mb-7 flex h-24 w-24 items-center justify-center rounded-full border border-primary/40 bg-primary text-primary-foreground shadow-[0_0_70px_var(--glow)]">
+        <Constellation className="absolute right-6 top-6 hidden w-32 text-primary sm:block" />
+        <Constellation className="absolute bottom-6 left-6 hidden w-24 -scale-x-100 text-primary sm:block" />
+        {[0, 1].map((index) => (
+          <span
+            key={index}
+            aria-hidden="true"
+            className="animate-shooting-star pointer-events-none absolute h-px w-28 bg-gradient-to-l from-primary/90 to-transparent"
+            style={{ top: `${14 + index * 26}%`, right: "-7rem", animationDelay: `${index * 4.5 + 1.2}s` }}
+          />
+        ))}
+        <div className="animate-frame-glow relative z-10 mx-auto flex max-w-4xl flex-col items-center rounded-2xl border border-primary/35 px-6 py-12 text-center sm:px-12">
+          <button
+            type="button"
+            onClick={handleLogoClick}
+            aria-label="Логотип клана PEARL STAR"
+            className="relative mb-7 flex h-24 w-24 cursor-pointer items-center justify-center rounded-full border border-primary/40 bg-primary text-primary-foreground shadow-[0_0_70px_var(--glow)] transition-transform hover:scale-105 active:scale-95"
+          >
             <Star size={46} fill="currentColor" />
             <span className="absolute -right-3 -top-1 rounded-full border border-primary/30 bg-background px-2 py-1 text-[10px] font-bold text-gold-soft">CoC</span>
-          </div>
+            {burstKey > 0 && (
+              <span key={burstKey} className="pointer-events-none absolute inset-0" aria-hidden="true">
+                {BURST_OFFSETS.map(([x, y], index) => (
+                  <Sparkles
+                    key={index}
+                    size={index % 2 ? 12 : 16}
+                    className="animate-star-burst absolute left-1/2 top-1/2 -ml-2 -mt-2 text-gold-soft"
+                    style={{ "--burst-x": x, "--burst-y": y, animationDelay: `${index * 0.05}s` } as React.CSSProperties}
+                  />
+                ))}
+              </span>
+            )}
+          </button>
           <p className="mb-4 text-xs font-bold uppercase tracking-[0.34em] text-primary">Clash of Clans</p>
           <h1 className="font-display text-5xl font-black leading-none sm:text-7xl lg:text-8xl">
             <span className="text-primary">PEARL</span> STAR
