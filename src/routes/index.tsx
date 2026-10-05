@@ -108,16 +108,31 @@ const NAV_LINKS = [
 function TopNav() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-panel backdrop-blur">
-      <nav aria-label="Разделы страницы" className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-8 gap-y-1 px-5 py-3.5">
-        {NAV_LINKS.map(({ href, label }) => (
-          <a
-            key={href}
-            href={href}
-            className="text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground transition-colors hover:text-primary"
-          >
-            {label}
-          </a>
-        ))}
+      <nav aria-label="Разделы страницы" className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-8 gap-y-2 px-5 py-3.5">
+        <span aria-hidden="true" className="hidden w-48 lg:block" />
+        <div className="flex flex-1 flex-wrap items-center justify-center gap-x-8 gap-y-2">
+          {NAV_LINKS.map(({ href, label }) => (
+            <a
+              key={href}
+              href={href}
+              className="text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground transition-colors hover:text-primary"
+            >
+              {label}
+            </a>
+          ))}
+        </div>
+        <a
+          href={LEADER_TELEGRAM_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="flex shrink-0 items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-primary"
+        >
+          <Send size={14} aria-hidden="true" />
+          <span>
+            Telegram главы{" "}
+            <span className="normal-case tracking-normal text-gold-soft">{LEADER_HANDLE}</span>
+          </span>
+        </a>
       </nav>
     </header>
   );
