@@ -109,7 +109,13 @@ function TopNav() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-panel backdrop-blur">
       <nav aria-label="Разделы страницы" className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-8 gap-y-2 px-5 py-3.5">
-        <span aria-hidden="true" className="hidden w-48 lg:block" />
+        <span
+          aria-hidden="true"
+          className="invisible hidden items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] lg:flex"
+        >
+          <Send size={14} aria-hidden="true" />
+          Telegram главы <span className="normal-case tracking-normal">{LEADER_HANDLE}</span>
+        </span>
         <div className="flex flex-1 flex-wrap items-center justify-center gap-x-8 gap-y-2">
           {NAV_LINKS.map(({ href, label }) => (
             <a
