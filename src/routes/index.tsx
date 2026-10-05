@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowDown,
@@ -140,9 +141,64 @@ function TopNav() {
   );
 }
 
-function Index() {
+/** Small constellation decoration for a corner of the interface. */
+function Constellation({ className }: { className: string }) {
+  const stars: Array<[number, number, number]> = [
+    [12, 30, 2.2],
+    [42, 14, 1.6],
+    [70, 34, 2.4],
+    [96, 12, 1.5],
+    [110, 44, 2],
+    [58, 58, 1.4],
+  ];
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <svg aria-hidden="true" viewBox="0 0 120 70" className={className}>
+      <polyline
+        points="12,30 42,14 70,34 96,12 110,44 58,58 12,30"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="0.6"
+        strokeDasharray="2 3"
+        className="text-primary/25"
+      />
+      {stars.map(([cx, cy, r], index) => (
+        <circle key={index} cx={cx} cy={cy} r={r} className="animate-star-pulse fill-primary/60" style={{ animationDelay: `${index * 0.7}s` }} />
+      ))}
+    </svg>
+  );
+}
+
+const BURST_OFFSETS: Array<[string, string]> = [
+  ["-64px", "-52px"],
+  ["58px", "-68px"],
+  ["-78px", "18px"],
+  ["72px", "30px"],
+  ["-30px", "-84px"],
+  ["26px", "66px"],
+  ["-56px", "58px"],
+  ["84px", "-22px"],
+];
+
+function Index() {
+  const [logoClicks, setLogoClicks] = useState(0);
+  const [burstKey, setBurstKey] = useState(0);
+
+  const handleLogoClick = () => {
+    const next = logoClicks + 1;
+    if (next >= 5) {
+      setBurstKey((key) => key + 1);
+      setLogoClicks(0);
+    } else {
+      setLogoClicks(next);
+    }
+  };
+
+  return (
+    <main className="relative min-h-screen bg-background text-foreground">
+      <div
+        aria-hidden="true"
+        className="animate-gold-drift pointer-events-none fixed inset-0 bg-[radial-gradient(ellipse_at_top_left,oklch(0.72_0.155_86/7%),transparent_55%),radial-gradient(ellipse_at_bottom_right,oklch(0.72_0.155_86/5%),transparent_50%)]"
+      />
       <TopNav />
       <section className="relative flex min-h-[92vh] items-center justify-center border-b border-border px-5 py-16">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--color-accent),transparent_58%)] opacity-50" />
