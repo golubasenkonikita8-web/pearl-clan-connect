@@ -99,7 +99,7 @@ function Num({ children }: { children: string }) {
   );
 }
 
-function NAV_LINKS = [
+const NAV_LINKS = [
   { href: "#clan", label: "КЛАН" },
   { href: "#offers", label: "В ИГРЕ" },
   { href: "#join", label: "МЫ НА СВЯЗИ" },
@@ -218,7 +218,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="border-b border-border px-5 py-20">
+      <section id="offers" className="border-b border-border px-5 py-20">
         <div className="mx-auto max-w-6xl">
           <p className="text-xs font-bold uppercase tracking-[0.26em] text-primary">От нас</p>
           <h2 className="mt-3 max-w-2xl text-3xl font-black sm:text-5xl">Что мы предлагаем игрокам</h2>
@@ -250,7 +250,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="px-5 py-20">
+      <section id="join" className="px-5 py-20">
         <div className="mx-auto max-w-4xl rounded-lg border border-border bg-card p-8 sm:p-12">
             <div className="flex flex-col items-center justify-center text-center">
               <Sparkles className="text-primary" />
